@@ -16,7 +16,7 @@
     "yeahjs": "0.3.0"
   },
   "devDependencies": {
-    "servbot": "0.2.2",
+    "servbot": "0.2.6",
     "watchlist": "0.3.1"
   }
 }
