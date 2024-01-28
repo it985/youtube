@@ -12,7 +12,7 @@ const TEST_FILE = 'src/data.json';
 // const YOUTUBE_URL = 'yewtu.be';
 const YOUTUBE_URL = 'youtube.com';
 const NOW = getNowDate();
-const YEAR_IN_MS = 31536000000;
+const YEAR_IN_MS = 630720000000;
 
 const FEEDS = JSON.parse(readFileSync(resolve(FEEDS_JSON), { encoding: 'utf8' }));
 const PARSER = new Parser({
