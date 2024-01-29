@@ -9,24 +9,24 @@ dependencies:
     specifier: 1.1.2
     version: 1.1.2
   rss-parser:
-    specifier: 3.6.3
-    version: 3.6.3
+    specifier: 3.13.0
+    version: 3.13.0
   yeahjs:
     specifier: 0.3.0
     version: 0.3.0
 
 devDependencies:
   servbot:
-    specifier: 0.2.2
-    version: 0.2.2
+    specifier: 0.2.6
+    version: 0.2.6
   watchlist:
     specifier: 0.3.1
     version: 0.3.1
 
 packages:
 
-  /entities@1.1.2:
-    resolution: {integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==}
+  /entities@2.2.0:
+    resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
     dev: false
 
   /httpie@1.1.2:
@@ -39,20 +39,20 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /rss-parser@3.6.3:
-    resolution: {integrity: sha512-HASaMXqkUUw7mS+Sz780ml3Da3dG4ddIA3FRyXE8ae1KIiiDxG+jzrsNk/bpK1zDrDKe2WztjfQ5MRF323Kg3g==}
+  /rss-parser@3.13.0:
+    resolution: {integrity: sha512-7jWUBV5yGN3rqMMj7CZufl/291QAhvrrGpDNE4k/02ZchL0npisiYYqULF71jCEKoIiHvK/Q2e6IkDwPziT7+w==}
     dependencies:
-      entities: 1.1.2
-      xml2js: 0.4.23
+      entities: 2.2.0
+      xml2js: 0.5.0
     dev: false
 
   /sax@1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
     dev: false
 
-  /servbot@0.2.2:
-    resolution: {integrity: sha512-k2lNeSyti0J2/4Kb2hunWjnHyv1gMQq4Hed0EOfIsS82HpfGeNV2ZIsWIQUsnRBKfMc7I6+0o5TfIJ/GbqEg7Q==}
-    engines: {node: '>=12.x'}
+  /servbot@0.2.6:
+    resolution: {integrity: sha512-55bZvh2CAEJwV7I2NvJZv+FWKD+3s5RqDpengAIUCQuUll64vymKSnGl2phoxZBBPJfS83Ttax5qTHaetboY7Q==}
+    engines: {node: '>=12.x', pnpm: 7.x}
     dev: true
 
   /watchlist@0.3.1:
@@ -63,8 +63,8 @@ packages:
       mri: 1.2.0
     dev: true
 
-  /xml2js@0.4.23:
-    resolution: {integrity: sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==}
+  /xml2js@0.5.0:
+    resolution: {integrity: sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==}
     engines: {node: '>=4.0.0'}
     dependencies:
       sax: 1.2.4
