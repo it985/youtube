@@ -1,50 +1,39 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>🎉 YouTube 订阅查看</title>
+  <title> 🎉 youtube 订阅查看</title>
   <link rel="stylesheet" href="./main.css">
   <link rel="icon" href="https://cdn.staticaly.com/gh/rcy1314/tuchuang@main/20221101/朋克.4obzeoqjmw00.jpg" type="image/png" />
 </head>
 <body>
-  <header>
-    <h1>🎉</h1>
-    <div class="search">
-      <form action="<%= it.searchUrl %>" method="GET">
-        <div class="input-group">
-          <input type="text" class="text-input" name="q" placeholder="搜索" />
-          <button type="submit">确认</button>
-        </div>
-      </form>
-    </div>
-  </header>
+    <header>
+      <h1>🎉</h1>
+      <div class="search">
+        <form action="<%= it.searchUrl %>" method="GET">
+          <div class="input-group">
+            <input type="text" class="text-input" name="q" placeholder="搜索" />
+            <button type="submit">确认</button>
+          </div>
+        </form>
+      </div>
+    </header>
 
-  <main>
-    <% const itemsPerPage = 100; %> <!-- 每页显示的最大视频数量 -->
-    <% const totalVideos = it.days.reduce((sum, day) => sum + it.videos[day].length, 0); %> <!-- 总视频数量 -->
-    <% const totalPages = Math.ceil(totalVideos / itemsPerPage); %> <!-- 总页数 -->
-    <% const currentPage = parseInt(request.query.page) || 1; %> <!-- 当前页数 -->
 
-    <!-- 计算当前页需要显示的视频的起始和结束索引 -->
-    <% let startIndex = (currentPage - 1) * itemsPerPage; %>
-    <% let endIndex = Math.min(currentPage * itemsPerPage, totalVideos); %>
+    </a>
 
-    <!-- 显示当前页的视频数据 -->
-    <% let videoCount = 0; %>
-    <% for (let day of it.days) { %>
-      <% if (videoCount >= endIndex) break; %> <!-- 如果已显示的视频数量达到结束索引，停止循环 -->
-
-      <div class="day">
-        <h2><%= day %></h2>
-        <hr />
-        <div class="videos">
-          <% for (let video of it.videos[day]) { %>
-            <% if (videoCount >= startIndex && videoCount < endIndex) { %> <!-- 仅显示当前页的视频 -->
+    <main>
+      <% for (let day of it.days) { %>
+        <div class="day">
+          <h2><%= day %></h2>
+          <hr />
+          <div class="videos">
+            <% for (let video of it.videos[day]) { %>
               <div class="video">
                 <a href="<%= video.link %>">
-                  <img src="<%= video.thumbnail %>" loading="lazy" alt="Video thumbnail" />
+                  <img src="<%= video.thumbnail %>" loading="lazy" />
                 </a>
 
                 <p>
@@ -64,29 +53,9 @@
                 </p>
               </div>
             <% } %>
-            <% videoCount++; %> <!-- 增加已显示的视频计数 -->
-          <% } %>
+          </div>
         </div>
-      </div>
-    <% } %>
-
-    <!-- 分页控件 -->
-    <div class="pagination">
-      <% if (currentPage > 1) { %>
-        <a href="?page=<%= currentPage - 1 %>">上一页</a>
       <% } %>
-
-      <span>第 <%= currentPage %> 页 / 共 <%= totalPages %> 页</span>
-
-      <% if (currentPage < totalPages) { %>
-        <a href="?page=<%= currentPage + 1 %>">下一页</a>
-      <% } %>
-
-      <form action="" method="GET" class="page-form">
-        <input type="number" name="page" min="1" max="<%= totalPages %>" value="<%= currentPage %>" />
-        <button type="submit">跳转</button>
-      </form>
-    </div>
-  </main>
+    </main>
 </body>
 </html>
