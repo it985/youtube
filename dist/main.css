@@ -164,36 +164,3 @@ button:hover {
   width: 60px;
   margin-right: 5px;
 }
-
-/* 分页 */
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.pagination a,
-.pagination button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  text-decoration: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-}
-
-.pagination span {
-  margin: 0 10px;
-}
-
-.page-form {
-  display: flex;
-  align-items: center;
-}
-
-.page-form input {
-  width: 60px;
-  margin-right: 5px;
-  text-align: center;
-}
