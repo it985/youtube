@@ -1,61 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> 🎉 youtube 订阅查看</title>
-  <link rel="stylesheet" href="./main.css">
+  <title>🎉 YouTube 订阅查看</title>
+  <link rel="stylesheet" href="./main.css" async>
   <link rel="icon" href="https://cdn.staticaly.com/gh/rcy1314/tuchuang@main/20221101/朋克.4obzeoqjmw00.jpg" type="image/png" />
 </head>
 <body>
-    <header>
-      <h1>🎉</h1>
-      <div class="search">
-        <form action="<%= it.searchUrl %>" method="GET">
-          <div class="input-group">
-            <input type="text" class="text-input" name="q" placeholder="搜索" />
-            <button type="submit">确认</button>
-          </div>
-        </form>
-      </div>
-    </header>
+  <header>
+    <h1>🎉</h1>
+    <div class="search">
+      <form action="<%= it.searchUrl %>" method="GET">
+        <div class="input-group">
+          <input type="text" class="text-input" name="q" placeholder="搜索" />
+          <button type="submit">确认</button>
+        </div>
+      </form>
+    </div>
+  </header>
 
-    
-    </a>
+  <main>
+    <% const itemsPerPage = 10; %>
+    <% const totalPages = Math.ceil(it.days.length / itemsPerPage); %>
 
-    <main>
-      <% for (let day of it.days) { %>
-        <div class="day">
-          <h2><%= day %></h2>
-          <hr />
-          <div class="videos">
-            <% for (let video of it.videos[day]) { %>
-              <div class="video">
+    <% for (let i = 0; i < itemsPerPage; i++) { %>
+      <div class="day">
+        <h2><%= it.days[i] %></h2>
+        <hr />
+        <div class="videos">
+          <% for (let video of it.videos[it.days[i]]) { %>
+            <div class="video">
+              <a href="<%= video.link %>">
+                <img src="<%= video.thumbnail %>" loading="lazy" alt="Video thumbnail" />
+              </a>
+
+              <p>
                 <a href="<%= video.link %>">
-                  <img src="<%= video.thumbnail %>" loading="lazy" />
+                  <%= video.title %>
+                </a>
+              </p>
+
+              <p>
+                <a href="<%= video.channel %>">
+                  <strong><%= video.author %>&nbsp;</strong>
                 </a>
 
-                <p>
-                  <a href="<%= video.link %>">
-                    <%= video.title %>
-                  </a>
-                </p>
-
-                <p>
-                  <a href="<%= video.channel %>">
-                    <strong><%= video.author %>&nbsp;</strong>
-                  </a>
-
-                  <a href="<%= video.youtube %>">
-                    <span>[博主]</span>
-                  </a>
-                </p>
-              </div>
-            <% } %>
-          </div>
+                <a href="<%= video.youtube %>">
+                  <span>[博主]</span>
+                </a>
+              </p>
+            </div>
+          <% } %>
         </div>
+      </div>
+    <% } %>
+
+    <div class="pagination">
+      <% for (let page = 1; page <= totalPages; page++) { %>
+        <a href="?page=<%= page %>"><%= page %></a>
       <% } %>
-    </main>
+    </div>
+  </main>
+
 </body>
 </html>
