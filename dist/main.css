@@ -195,4 +195,5 @@ button:hover {
 .page-form input {
   width: 60px;
   margin-right: 5px;
+  text-align: center;
 }
