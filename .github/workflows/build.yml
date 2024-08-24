@@ -1,8 +1,8 @@
 name: build
 on:
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
   schedule:
     # Run this script every 1 hrs
     #  */m hr day month day_of_week
