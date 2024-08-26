@@ -20,46 +20,36 @@
         </form>
       </div>
     </header>
+    </a>
     <main>
-      <nav>
-        <ul class="pagination">
-          <% for (let month of it.months) { %>
-            <li>
-              <a href="?month=<%= month %>"><%= month %></a>
-            </li>
-          <% } %>
-        </ul>
-      </nav>
-      <% 
-        const currentMonth = new URLSearchParams(window.location.search).get('month') || it.months[0];
-        const currentVideos = it.videos[currentMonth] || [];
-      %>
-      <div class="month">
-        <h2><%= currentMonth %></h2>
-        <hr />
-        <div class="videos">
-          <% for (let video of currentVideos) { %>
-            <div class="video">
-              <a href="<%= video.link %>">
-                <img src="<%= video.thumbnail %>" loading="lazy" />
-              </a>
-              <p>
+      <% for (let day of it.days) { %>
+        <div class="day">
+          <h2><%= day %></h2>
+          <hr />
+          <div class="videos">
+            <% for (let video of it.videos[day]) { %>
+              <div class="video">
                 <a href="<%= video.link %>">
-                  <%= video.title %>
+                  <img src="<%= video.thumbnail %>" loading="lazy" />
                 </a>
-              </p>
-              <p>
-                <a href="<%= video.channel %>">
-                  <strong><%= video.author %>&nbsp;</strong>
-                </a>
-                <a href="<%= video.youtube %>">
-                  <span>[博主]</span>
-                </a>
-              </p>
-            </div>
-          <% } %>
+                <p>
+                  <a href="<%= video.link %>">
+                    <%= video.title %>
+                  </a>
+                </p>
+                <p>
+                  <a href="<%= video.channel %>">
+                    <strong><%= video.author %>&nbsp;</strong>
+                  </a>
+                  <a href="<%= video.youtube %>">
+                    <span>[博主]</span>
+                  </a>
+                </p>
+              </div>
+            <% } %>
+          </div>
         </div>
-      </div>
+      <% } %>
     </main>
 </body>
 </html>
