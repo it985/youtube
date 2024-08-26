@@ -65,22 +65,22 @@ export async function render(dev = false, write = false) {
                     const pubDate = new Date(item.pubDate);
                     const diffInMs = NOW - pubDate;
 
-                    // 不包括一年前的视频
+                    // don't include videos more than a year old
                     if (diffInMs > YEAR_IN_MS) return;
 
                     const month = pubDate.getMonth() + 1;
-                    const year = pubDate.getFullYear();
-                    const dateStr = `${year}-${month < 10 ? `0${month}` : month}`;
+                    const date = pubDate.getDate();
+                    const dateStr = `${pubDate.getFullYear()}.${month < 10 ? `0${month}` : month}.${date < 10 ? `0${date}` : date}`;
 
                     if (!videos[dateStr]) videos[dateStr] = [];
 
                     videos[dateStr].push({
                         ...item,
                         dateStr,
-                        youtube: item.link + '&redirect=false', // 通过 kevinfiol/redirector 使用的查询参数
-                        link: `https://${YOUTUBE_URL}` + item.link.split('youtube.com')[1], // 重定向
+                        youtube: item.link + '&redirect=false', // query param to use with kevinfiol/redirector
+                        link: `https://${YOUTUBE_URL}` + item.link.split('youtube.com')[1], // redirect
                         thumbnail: item.group['media:thumbnail'][0]['$'].url,
-                        channel: `https://${YOUTUBE_URL}` + contents.link.split('youtube.com')[1] // 重定向
+                        channel: `https://${YOUTUBE_URL}` + contents.link.split('youtube.com')[1] // redirect
                     });
                 });
             } catch (e) {
@@ -91,26 +91,26 @@ export async function render(dev = false, write = false) {
         if (write) writeFileSync(resolve(TEST_FILE), JSON.stringify(videos), 'utf8');
     }
 
-    // 按月份和年份排序视频
-    for (let month in videos) {
-        videos[month].sort((a, b) => {
+    for (let day in videos) {
+        // sort videos per day by pubDate
+        videos[day].sort((a, b) => {
             return a.pubDate < b.pubDate ? 1 : -1;
         });
     }
 
-    // 获取排序后的月份列表
-    const months = Object.keys(videos).sort((a, b) => {
+    // get a sorted list of days
+    const days = Object.keys(videos).sort((a, b) => {
         return a < b ? 1 : -1;
     });
 
     const now = NOW.toString().split('(')[0].trim();
 
-    // 搜索 URL
+    // search url
     const searchUrl = `https://${YOUTUBE_URL}/search`;
 
     const source = readFileSync(resolve(INPUT_TEMPLATE), { encoding: 'utf8' });
     const template = compile(source, { localsName: 'it' });
-    const html = template({ videos, months, now, searchUrl });
+    const html = template({ videos, days, now, searchUrl });
     writeFileSync(resolve(OUTPUT_FILE), html, { encoding: 'utf8' });
 }
 
@@ -122,4 +122,3 @@ function getNowDate() {
     d = new Date(utc + (3600000 * offset));
     return d;
 }
-
