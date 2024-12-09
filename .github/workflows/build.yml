@@ -28,3 +28,8 @@ jobs:
           git-config-email: <>
           branch: gh-pages
           folder: dist
+      - name: Delete Workflow Runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          retain_days: 30
+          keep_minimum_runs: 6
